@@ -4,48 +4,46 @@
 }
 
 body {
+  width: 100%;
+  min-height: 100vh;
   background-color: #020631;
 }
 
 .app {
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, -10%);
-}
-
-.app .mainHeading h1 {
-  text-align: center;
-}
-
-.app h1,
-h2 {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 3.5rem;
   color: white;
 }
 
-.app .input {
+/* Input Section */
+.app .inputDiv {
+  width: 20em;
+  height: 2em;
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
-.app .input {
-  margin-top: 0.8em;
-  width: 20em;
-  height: 2em;
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 6px;
   padding: 5px;
+  margin-top: 0.8em;
+  border-radius: 6px;
+  background-color: rgb(196, 215, 231);
 }
 
-.app .input input {
+.app .inputDiv i {
+  margin: 0 10px;
+}
+
+.app .inputDiv input {
   width: 100%;
   height: 1.6em;
-  border-color: transparent;
-  outline-color: transparent;
+  border: none;
+  outline: none;
+  background-color: rgb(196, 215, 231);
 }
 
 .app i {
@@ -54,37 +52,48 @@ h2 {
   font-weight: 900;
   color: grey;
   margin-right: 5px;
+  transition: .25s;
 }
 
+.app i:hover {
+  transform: rotate(270deg);
+}
+
+.fa-pen {
+  cursor: auto !important;
+}
+
+/* ToDos Section */
 .app .todos {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  flex-direction: column;
-}
 
-.app .todos .todo {
   margin-top: 0.8em;
   width: 20em;
   height: 2em;
   background-color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  color: black;
   border-radius: 6px;
   padding: 5px;
 }
 
-.app .todos .todo .left {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+.app .todos input {
+  margin: 0 10px;
+  transition: .35s ease-in-out;
+  scale: 1.2;
 }
 
-.app .todos .todo .left p {
-  margin-left: 3px;
+.app .todos input:hover {
+  scale: 2;
+  transform: rotate(360deg);
+}
+
+.app .todos p {
+  margin: 0 3px;
+  margin-right: auto;
   font-size: medium;
-  font-weight: 700;
   font-style: normal;
+  font-weight: 700;
   color: grey;
 }
