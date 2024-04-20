@@ -56,7 +56,7 @@ body {
   cursor: pointer;
   font-size: larger;
   font-weight: 900;
-  color: grey;
+  color: rgb(73, 73, 73);
   margin-right: 5px;
   transition: .25s;
 }
@@ -69,8 +69,16 @@ body {
   cursor: auto !important;
 }
 
+select {
+  width: 6rem;
+  height: 1.5rem;
+  border-radius: 7.50px;
+  outline: none;
+  border: none;
+}
+
 /* ToDos Section */
-.tasks .todos {
+.todos .todo {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -82,30 +90,39 @@ body {
   color: black;
   border-radius: 6px;
   padding: 5px;
+  transition: .5s ease-in-out;
 }
 
-.tasks .todos input {
+.todos .todo input {
   margin: 0 10px;
   transition: .35s ease-in-out;
   scale: 1.2;
 }
 
-.tasks .todos input:hover {
+.todos .todo input:hover {
   scale: 2;
   transform: rotate(360deg);
 }
 
-.tasks .todos p {
+.todos .todo p {
   margin: 0 3px;
   margin-right: auto;
   font-size: medium;
   font-style: normal;
   font-weight: 700;
-  color: grey;
+  color: rgb(78, 78, 78);
 }
 
-/* Finished Section */
-.finished {
+.todos .todo p s {
+  color: rgb(53, 53, 53);
+}
+
+.todo.fade {
+  transform: translateX(-100px);
+}
+
+/* Dropped Section */
+.dropped {
   width: 22.5em;
   min-height: 12.5rem;
   margin-top: 3rem;
@@ -118,7 +135,7 @@ body {
   justify-content: flex-start;
 }
 
-.finished .items {
+.dropped .items {
   display: flex;
   justify-content: space-between;
   align-items: center;
