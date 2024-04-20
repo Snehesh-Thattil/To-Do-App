@@ -22,6 +22,7 @@ body {
 
 /* Input Section */
 .tasks {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -78,7 +79,52 @@ select {
 }
 
 /* ToDos Section */
-.todos .todo {
+.todos {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.concentrate,
+.delegate,
+.schedule,
+.ignorable {
+  width: 25%;
+  min-height: 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 25px 5px;
+  padding: 15px 0;
+  border-radius: 10px;
+  background-color: #030416;
+}
+
+.concentrate:hover .typeHeading {
+  letter-spacing: 2.5px;
+}
+
+.delegate:hover .typeHeading {
+  letter-spacing: 2.5px;
+}
+
+.schedule:hover .typeHeading {
+  letter-spacing: 2.5px;
+}
+
+.ignorable:hover .typeHeading {
+  letter-spacing: 2.5px;
+}
+
+.typeHeading {
+  font-weight: bold;
+  font-size: large;
+  color: #a0a0af;
+  transition: .5s ease-in-out;
+}
+
+.todo {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -93,18 +139,18 @@ select {
   transition: .5s ease-in-out;
 }
 
-.todos .todo input {
+.todo input {
   margin: 0 10px;
   transition: .35s ease-in-out;
   scale: 1.2;
 }
 
-.todos .todo input:hover {
+.todo input:hover {
   scale: 2;
   transform: rotate(360deg);
 }
 
-.todos .todo p {
+.todo p {
   margin: 0 3px;
   margin-right: auto;
   font-size: medium;
@@ -113,7 +159,7 @@ select {
   color: rgb(78, 78, 78);
 }
 
-.todos .todo p s {
+.todo p s {
   color: rgb(53, 53, 53);
 }
 
