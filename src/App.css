@@ -15,20 +15,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   padding: 1.5rem 0;
   color: white;
 }
 
 /* Input Section */
-.tasks {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.tasks .inputDiv {
+.app .inputDiv {
   width: 22.5em;
   height: 3em;
   display: flex;
@@ -39,13 +31,18 @@ body {
   margin-top: 0.8em;
   border-radius: 6px;
   background-color: rgb(196, 215, 231);
+  transition: .25s ease-in-out;
 }
 
-.tasks .inputDiv i {
+.app .inputDiv:hover {
+  scale: 1.1;
+}
+
+.app .inputDiv i {
   margin: 0 10px;
 }
 
-.tasks .inputDiv input {
+.app .inputDiv input {
   width: 100%;
   height: 2.5em;
   border: none;
@@ -53,7 +50,7 @@ body {
   background-color: rgb(196, 215, 231);
 }
 
-.tasks i {
+.app i {
   cursor: pointer;
   font-size: larger;
   font-weight: 900;
@@ -62,7 +59,7 @@ body {
   transition: .25s;
 }
 
-.tasks i:hover {
+.app i:hover {
   transform: rotate(270deg);
 }
 
@@ -89,7 +86,7 @@ select {
 .delegate,
 .schedule,
 .ignorable {
-  width: 25%;
+  width: 24%;
   min-height: 20rem;
   display: flex;
   flex-direction: column;
@@ -97,31 +94,37 @@ select {
   justify-content: flex-start;
   margin: 25px 5px;
   padding: 15px 0;
-  border-radius: 10px;
-  background-color: #030416;
-}
-
-.concentrate:hover .typeHeading {
-  letter-spacing: 2.5px;
-}
-
-.delegate:hover .typeHeading {
-  letter-spacing: 2.5px;
-}
-
-.schedule:hover .typeHeading {
-  letter-spacing: 2.5px;
-}
-
-.ignorable:hover .typeHeading {
-  letter-spacing: 2.5px;
+  border-radius: 5px;
+  background-color: #9696b4;
 }
 
 .typeHeading {
   font-weight: bold;
   font-size: large;
-  color: #a0a0af;
+  color: #030416;
   transition: .5s ease-in-out;
+}
+
+.concentrate:hover .typeHeading {
+  letter-spacing: 1px;
+  color: white;
+
+}
+
+.delegate:hover .typeHeading {
+  letter-spacing: 1px;
+  color: white;
+
+}
+
+.schedule:hover .typeHeading {
+  letter-spacing: 1px;
+  color: white;
+}
+
+.ignorable:hover .typeHeading {
+  letter-spacing: 1px;
+  color: white;
 }
 
 .todo {
@@ -130,8 +133,8 @@ select {
   align-items: center;
 
   margin-top: 0.8em;
-  width: 20em;
-  height: 2.75em;
+  width: 19em;
+  height: 2.5em;
   background-color: white;
   color: black;
   border-radius: 6px;
@@ -164,45 +167,5 @@ select {
 }
 
 .todo.fade {
-  transform: translateX(-100px);
-}
-
-/* Dropped Section */
-.dropped {
-  width: 22.5em;
-  min-height: 12.5rem;
-  margin-top: 3rem;
-  padding: 10px;
-  border-radius: 10px;
-  background-color: #030416;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.dropped .items {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  margin-top: 0.8em;
-  width: 100%;
-  height: 2.75em;
-  background-color: white;
-  color: black;
-  border-radius: 6px;
-  padding: 5px;
-}
-
-.items i {
-  font-size: larger;
-  font-weight: 900;
-  margin: 0 5px;
-  transition: .25s;
-}
-
-.items .fa-times:hover {
-  transform: rotate(270deg);
-  cursor: pointer;
+  transform: rotateX(90deg) scale(.75);
 }
