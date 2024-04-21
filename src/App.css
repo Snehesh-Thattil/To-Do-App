@@ -14,9 +14,17 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
   padding: 1.5rem 0;
   color: white;
+}
+
+.app .header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Input Section */
@@ -133,7 +141,7 @@ select {
   align-items: center;
 
   margin-top: 0.8em;
-  width: 19em;
+  width: 90%;
   height: 2.5em;
   background-color: white;
   color: black;
@@ -168,4 +176,57 @@ select {
 
 .todo.fade {
   transform: rotateX(90deg) scale(.75);
+}
+
+/* Quote Section */
+.quote {
+  width: 100%;
+  padding: 20px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* MEDIA QUERIES*/
+@media(max-width:767px) {
+  .app .inputDiv {
+    width: 20em;
+    height: 3em;
+  }
+
+  .todos {
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+
+  .concentrate,
+  .delegate,
+  .schedule,
+  .ignorable {
+    width: 90%;
+    min-height: 20rem;
+    margin: 15px 0;
+  }
+}
+
+@media (min-width:768px) and (max-width:1024px) {
+  .app .inputDiv {
+    width: 25em;
+    margin-top: 2em;
+  }
+
+  .todos {
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+
+  .concentrate,
+  .delegate,
+  .schedule,
+  .ignorable {
+    width: 45%;
+    min-height: 25rem;
+    margin: 10px;
+  }
 }
