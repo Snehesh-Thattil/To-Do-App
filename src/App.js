@@ -35,7 +35,7 @@ function App() {
 
         <div className="inputDiv">
           <i className='fas fa-pen'></i>
-          <input className='one' value={toDo} onChange={(e) => setToDo(e.target.value)} type="text" placeholder="Add item..." />
+          <input className='inputBar' onChange={(e) => setToDo(e.target.value)} type="text" placeholder="Add item..." />
           <select name="Priority" onChange={(e) => setPrrty(e.target.value)}>
             <option value="0" defaultValue hidden>Priority</option>
             <option value="1">Concentrate</option>
@@ -43,14 +43,26 @@ function App() {
             <option value="3">Schedule</option>
             <option value="4">Ignorable</option>
           </select>
-          <i className="fas fa-plus" onClick={() => setAllToDo([...AllToDo, { id: Date.now(), task: toDo, priority: prrty, check: false }])}></i>
+          <i className="fas fa-plus" onClick={() => {
+            let inputBar = document.querySelector('.inputBar')
+
+            if (prrty < '1') {
+              alert('Choose a Valid Task Priority')
+            } else if (inputBar.value.length < 3) {
+              alert('Enter a Valid Task Name')
+            } else {
+              setAllToDo([...AllToDo, { id: Date.now(), task: toDo, priority: prrty, check: false }])
+              inputBar.value = ""
+              inputBar.focus()
+            }
+          }}></i>
         </div>
 
         <div className="todos">
 
           {/* Concentrate Tasks */}
           <div className="concentrate">
-            <p className="typeHeading">CONCENTRATE TASKS</p>
+            <p className="typeHeading">Concentrate Tasks</p>
             {AllToDo.map((obj) => {
               if (obj.priority === '1') {
                 return (
@@ -74,12 +86,13 @@ function App() {
                   </div>
                 )
               }
+              return null
             })}
           </div>
 
           {/* Delegate Tasks */}
           <div className="delegate">
-            <p className="typeHeading">DELEGATE TASKS</p>
+            <p className="typeHeading">Delegate Tasks</p>
             {AllToDo.map((obj) => {
               if (obj.priority === '2') {
                 return (
@@ -103,12 +116,13 @@ function App() {
                   </div>
                 )
               }
+              return null
             })}
           </div>
 
           {/* Schedule Tasks */}
           <div className="schedule">
-            <p className="typeHeading">SCHEDULE TASKS</p>
+            <p className="typeHeading">Schedule Tasks</p>
             {AllToDo.map((obj) => {
               if (obj.priority === '3') {
                 return (
@@ -132,12 +146,13 @@ function App() {
                   </div>
                 )
               }
+              return null
             })}
           </div>
 
           {/* Ignorable Tasks */}
           <div className="ignorable">
-            <p className="typeHeading">IGNORABLE TASKS</p>
+            <p className="typeHeading">Ignorable Tasks</p>
             {AllToDo.map((obj) => {
               if (obj.priority === '4') {
                 return (
@@ -161,16 +176,7 @@ function App() {
                   </div>
                 )
               }
-            })}
-          </div>
-
-          {/* Unselected */}
-          <div id="unselected" >
-            {AllToDo.map((obj) => {
-              if (obj.priority < '1') {
-                alert('priority not selected')
-                return null
-              }
+              return null
             })}
           </div>
 

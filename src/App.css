@@ -89,7 +89,7 @@ select {
 .delegate,
 .schedule,
 .ignorable {
-  width: 25%;
+  width: 24%;
   min-height: 20rem;
   display: flex;
   flex-direction: column;
@@ -97,31 +97,37 @@ select {
   justify-content: flex-start;
   margin: 25px 5px;
   padding: 15px 0;
-  border-radius: 10px;
-  background-color: #030416;
-}
-
-.concentrate:hover .typeHeading {
-  letter-spacing: 2.5px;
-}
-
-.delegate:hover .typeHeading {
-  letter-spacing: 2.5px;
-}
-
-.schedule:hover .typeHeading {
-  letter-spacing: 2.5px;
-}
-
-.ignorable:hover .typeHeading {
-  letter-spacing: 2.5px;
+  border-radius: 5px;
+  background-color: #9696b4;
 }
 
 .typeHeading {
   font-weight: bold;
   font-size: large;
-  color: #a0a0af;
+  color: #030416;
   transition: .5s ease-in-out;
+}
+
+.concentrate:hover .typeHeading {
+  letter-spacing: 1px;
+  color: white;
+
+}
+
+.delegate:hover .typeHeading {
+  letter-spacing: 1px;
+  color: white;
+
+}
+
+.schedule:hover .typeHeading {
+  letter-spacing: 1px;
+  color: white;
+}
+
+.ignorable:hover .typeHeading {
+  letter-spacing: 1px;
+  color: white;
 }
 
 .todo {
@@ -130,8 +136,8 @@ select {
   align-items: center;
 
   margin-top: 0.8em;
-  width: 20em;
-  height: 2.75em;
+  width: 19em;
+  height: 2.5em;
   background-color: white;
   color: black;
   border-radius: 6px;
@@ -164,7 +170,7 @@ select {
 }
 
 .todo.fade {
-  transform: translateX(-100px);
+  transform: rotateX(90deg) scale(.75);
 }
 
 /* Dropped Section */
