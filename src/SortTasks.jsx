@@ -21,9 +21,7 @@ function SortTasks({ title, AllToDo, toDos, parentState }) {
 
     // Checkbox Change Action
     function handleCheckboxChange(obj, checked) {
-        const handleCheckboxChange = AllToDo.map((item) => {
-            obj.id == item.id ? { ...item, check: checked } : item
-        })
+        const handleCheckboxChange = AllToDo.map((item) => obj.id === item.id ? { ...item, check: checked } : item)
         parentState(handleCheckboxChange)
     }
 

@@ -38,7 +38,7 @@ function App() {
 
       <div className="header">
         <h1>ToDo List</h1>
-        <h2>Whoop, it's {weekDay} 🌝 ☕</h2>
+        <h2>Voilà, it's {weekDay} 🌝 ☕</h2>
       </div>
 
       <div className="inputDiv">
