@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import SortTasks from './SortTasks';
 
 function App() {
   const [AllToDo, setAllToDo] = useState([])
@@ -9,22 +10,6 @@ function App() {
   let day = new Date().getDay()
   let weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
   let weekDay = weekDays[day]
-
-  function removeTask(e) {
-    e.preventDefault()
-    let task = e.target.parentElement
-    if (task.classList[0] === 'todo') {
-      task.classList.add('fade')
-      task.addEventListener('transitionend', () => {
-        task.remove()
-      })
-    } else {
-      task.parentElement.classList.add('fade')
-      task.parentElement.addEventListener('transitionend', () => {
-        task.parentElement.remove()
-      })
-    }
-  }
 
   function submitTask(e) {
     e.preventDefault()
@@ -41,6 +26,10 @@ function App() {
       inputBar.focus()
       setToDo("")
     }
+  }
+
+  function handleStateChange(newValue) {
+    setAllToDo(newValue)
   }
 
   // XML Starts Here //
@@ -67,124 +56,17 @@ function App() {
 
       <div className="todos">
 
-        {/* Concentrate Tasks */}
         <div className="concentrate">
-          <p className="typeHeading">Concentrate Tasks</p>
-          {AllToDo.map((obj) => {
-            if (obj.priority === '1') {
-              return (
-                <div className="todo">
-
-                  <input value={obj.checked} onChange={(e) => {
-                    setAllToDo(AllToDo.filter((obj2) => {
-                      if (obj2.id === obj.id) {
-                        obj2.check = e.target.checked
-                      }
-                      return obj2
-                    }))
-                  }} type="checkbox" />
-
-                  {obj.check ? <p><s>{obj.task}</s></p> : <p>{obj.task}</p>}
-
-                  <div className="icon" onClick={removeTask}>
-                    <i className="fas fa-times"></i>
-                  </div>
-
-                </div>
-              )
-            }
-            return null
-          })}
+          <SortTasks title={"Concentrate"} AllToDo={AllToDo} toDos={AllToDo.filter((item) => item.priority === '1')} parentState={handleStateChange} />
         </div>
-
-        {/* Delegate Tasks */}
         <div className="delegate">
-          <p className="typeHeading">Delegate Tasks</p>
-          {AllToDo.map((obj) => {
-            if (obj.priority === '2') {
-              return (
-                <div className="todo">
-
-                  <input value={obj.checked} onChange={(e) => {
-                    setAllToDo(AllToDo.filter((obj2) => {
-                      if (obj2.id === obj.id) {
-                        obj2.check = e.target.checked
-                      }
-                      return obj2
-                    }))
-                  }} type="checkbox" />
-
-                  {obj.check ? <p><s>{obj.task}</s></p> : <p>{obj.task}</p>}
-
-                  <div className="icon" onClick={removeTask}>
-                    <i className="fas fa-times"></i>
-                  </div>
-
-                </div>
-              )
-            }
-            return null
-          })}
+          <SortTasks title={"Delegate"} AllToDo={AllToDo} toDos={AllToDo.filter((item) => item.priority === '2')} parentState={handleStateChange} />
         </div>
-
-        {/* Schedule Tasks */}
         <div className="schedule">
-          <p className="typeHeading">Schedule Tasks</p>
-          {AllToDo.map((obj) => {
-            if (obj.priority === '3') {
-              return (
-                <div className="todo">
-
-                  <input value={obj.checked} onChange={(e) => {
-                    setAllToDo(AllToDo.filter((obj2) => {
-                      if (obj2.id === obj.id) {
-                        obj2.check = e.target.checked
-                      }
-                      return obj2
-                    }))
-                  }} type="checkbox" />
-
-                  {obj.check ? <p><s>{obj.task}</s></p> : <p>{obj.task}</p>}
-
-                  <div className="icon" onClick={removeTask}>
-                    <i className="fas fa-times"></i>
-                  </div>
-
-                </div>
-              )
-            }
-            return null
-          })}
+          <SortTasks title={"Schedule"} AllToDo={AllToDo} toDos={AllToDo.filter((item) => item.priority === '3')} parentState={handleStateChange} />
         </div>
-
-        {/* Ignorable Tasks */}
         <div className="ignorable">
-          <p className="typeHeading">Ignorable Tasks</p>
-          {AllToDo.map((obj) => {
-            if (obj.priority === '4') {
-              return (
-                <div className="todo">
-
-                  <input value={obj.checked} onChange={(e) => {
-                    setAllToDo(AllToDo.filter((obj2) => {
-                      if (obj2.id === obj.id) {
-                        obj2.check = e.target.checked
-                      }
-                      return obj2
-                    }))
-                  }} type="checkbox" />
-
-                  {obj.check ? <p><s>{obj.task}</s></p> : <p>{obj.task}</p>}
-
-                  <div className="icon" onClick={removeTask}>
-                    <i className="fas fa-times"></i>
-                  </div>
-
-                </div>
-              )
-            }
-            return null
-          })}
+          <SortTasks title={"Ignorable"} AllToDo={AllToDo} toDos={AllToDo.filter((item) => item.priority === '4')} parentState={handleStateChange} />
         </div>
 
       </div>

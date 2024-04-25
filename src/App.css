@@ -88,6 +88,15 @@ select {
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.task__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .concentrate,
