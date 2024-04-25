@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-  let day = new Date().getDay()
-  let weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-  let weekDay = weekDays[day]
-
   const [AllToDo, setAllToDo] = useState([])
   const [toDo, setToDo] = useState('')
   const [prrty, setPrrty] = useState('')
 
+  let day = new Date().getDay()
+  let weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+  let weekDay = weekDays[day]
+
   function removeTask(e) {
+    e.preventDefault()
     let task = e.target.parentElement
     if (task.classList[0] === 'todo') {
       task.classList.add('fade')
@@ -25,6 +26,23 @@ function App() {
     }
   }
 
+  function submitTask(e) {
+    e.preventDefault()
+    let inputBar = document.querySelector('.inputBar')
+
+    if (prrty < '1') {
+      alert('Choose a Valid Task Priority')
+    }
+    else if (toDo.length < 3) {
+      alert('Enter a Valid Task Name')
+    }
+    else {
+      setAllToDo([...AllToDo, { id: Date.now(), task: toDo, priority: prrty, check: false }])
+      inputBar.focus()
+      setToDo("")
+    }
+  }
+
   // XML Starts Here //
   return (
     <div className="app">
@@ -36,7 +54,7 @@ function App() {
 
       <div className="inputDiv">
         <i className='fas fa-pen'></i>
-        <input className='inputBar' onChange={(e) => setToDo(e.target.value)} type="text" placeholder="Add item..." />
+        <input className='inputBar' value={toDo} onChange={(e) => setToDo(e.target.value)} type="text" placeholder="Add item..." />
         <select name="Priority" onChange={(e) => setPrrty(e.target.value)}>
           <option value="0" defaultValue hidden>Priority</option>
           <option value="1">Concentrate</option>
@@ -44,19 +62,7 @@ function App() {
           <option value="3">Schedule</option>
           <option value="4">Ignorable</option>
         </select>
-        <i className="fas fa-plus" onClick={() => {
-          let inputBar = document.querySelector('.inputBar')
-
-          if (prrty < '1') {
-            alert('Choose a Valid Task Priority')
-          } else if (inputBar.value.length < 3) {
-            alert('Enter a Valid Task Name')
-          } else {
-            setAllToDo([...AllToDo, { id: Date.now(), task: toDo, priority: prrty, check: false }])
-            inputBar.value = ""
-            inputBar.focus()
-          }
-        }}></i>
+        <i className="fas fa-plus" onClick={submitTask}></i>
       </div>
 
       <div className="todos">
