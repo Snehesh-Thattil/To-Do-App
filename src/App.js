@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import SortTasks from './SortTasks';
+import QuotesGenerate from './QuotesGenerate';
 
 function App() {
   const [AllToDo, setAllToDo] = useState([])
@@ -72,8 +73,7 @@ function App() {
       </div>
 
       <div className="quote">
-        <h4>"Our greatest weakness lies in giving up. The most certain way to succeed is always to try just one more time."<br />
-          <span>- Thomas Edison</span></h4>
+        <QuotesGenerate />
       </div>
 
     </div>
