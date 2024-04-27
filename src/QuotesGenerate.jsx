@@ -6,17 +6,19 @@ function QuotesGenerate() {
     const [ranNum, setRanNum] = useState(0)
 
     useEffect(() => {
-        setRanNum(Math.floor(Math.random() * 16))
+        setRanNum(Math.floor(Math.random() * 15))
     }, [])
 
     useEffect(() => {
         async function fetchQuote() {
-            fetch('https://type.fit/api/quotes')
-                .then((res) => res.json())
-                .then((data) => {
-                    setQuote(data[ranNum].text)
-                    setAuthor(data[ranNum].author.split(','))
-                })
+            return (
+                fetch('https://type.fit/api/quotes')
+                    .then((res) => res.json())
+                    .then((data) => {
+                        setQuote(data[ranNum].text)
+                        setAuthor(data[ranNum].author.split(','))
+                    })
+            )
         }
         fetchQuote()
     }, [ranNum])
