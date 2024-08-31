@@ -9,8 +9,8 @@ function App() {
   const [prrty, setPrrty] = useState('')
 
   let day = new Date().getDay()
-  let weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-  let weekDay = weekDays[day]
+  let AllDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+  let Today = AllDays[day]
 
   function submitTask(e) {
     e.preventDefault()
@@ -39,7 +39,7 @@ function App() {
 
       <div className="header">
         <h1>ToDo List</h1>
-        <h2>Voilà, it's {weekDay} 🌝 ☕</h2>
+        <h2>Voilà, it's {Today} 🌝 ☕</h2>
       </div>
 
       <div className="inputDiv">

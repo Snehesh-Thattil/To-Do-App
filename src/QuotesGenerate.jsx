@@ -18,6 +18,10 @@ function QuotesGenerate() {
                         setQuote(data[ranNum].text)
                         setAuthor(data[ranNum].author.split(','))
                     })
+                    .catch(() => {
+                        setQuote("I'm the Best")
+                        setAuthor(["Snehesh Thattil"])
+                    })
             )
         }
         fetchQuote()
