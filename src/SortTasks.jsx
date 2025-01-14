@@ -1,47 +1,54 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-function SortTasks({ title, AllToDo, toDos, parentState }) {
+function SortTasks({ title, toDos, AllToDo, setAllToDo }) {
 
-    // Remove Icon Action
-    function removeTask(e) {
-        e.preventDefault()
-        let task = e.target.parentElement
-        if (task.classList[0] === 'todo') {
-            task.classList.add('fade')
-            task.addEventListener('transitionend', () => {
-                task.remove()
-            })
-        } else {
-            task.parentElement.classList.add('fade')
-            task.parentElement.addEventListener('transitionend', () => {
-                task.parentElement.remove()
-            })
+    useEffect(() => {
+        const tasksFetch = JSON.parse(localStorage.getItem("Tasks"))
+        if (tasksFetch) {
+            setAllToDo(tasksFetch)
         }
+    }, [setAllToDo])
+
+    // Remove Task Action
+    function removeTask(e, obj) {
+        e.preventDefault()
+
+        const fadeInstalledList = AllToDo.map((item) => {
+            return obj.id === item.id ? { ...item, fadeOut: true } : item
+        })
+        setAllToDo(fadeInstalledList)
+
+        setTimeout(() => {
+            const removedList = AllToDo.filter((item) => obj.id !== item.id)
+            setAllToDo(removedList)
+            localStorage.setItem("Tasks", JSON.stringify(removedList))
+        }, 400)
     }
 
     // Checkbox Change Action
     function handleCheckboxChange(obj, checked) {
         const handleCheckboxChange = AllToDo.map((item) => obj.id === item.id ? { ...item, check: checked } : item)
-        parentState(handleCheckboxChange)
+        setAllToDo(handleCheckboxChange)
+        localStorage.setItem("Tasks", JSON.stringify(handleCheckboxChange))
     }
 
-    // XML Starts here
+    // Rendering
     return (
         <div className="task__wrapper">
 
             <p className="typeHeading">{title}</p>
-            {toDos.map((obj) => {
+            {toDos.map((obj, index) => {
                 return (
-                    <div className="todo">
+                    <div key={index} className={`todo ${obj.fadeOut ? 'fade' : ''}`} >
 
-                        <input value={obj.checked}
+                        <input checked={obj.check}
                             onChange={(e) => handleCheckboxChange(obj, e.target.checked)}
                             type="checkbox" />
 
                         {obj.check ? <p><s>{obj.task}</s></p> : <p>{obj.task}</p>}
 
-                        <div className="icon" onClick={removeTask}>
-                            <i className="fas fa-times"></i>
+                        <div className="icon">
+                            <i className="fas fa-times" onClick={(e) => removeTask(e, obj)}></i>
                         </div>
 
                     </div>

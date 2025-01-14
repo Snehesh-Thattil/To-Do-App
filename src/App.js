@@ -23,17 +23,17 @@ function App() {
       alert('Enter a Valid Task Name')
     }
     else {
-      setAllToDo([...AllToDo, { id: Date.now(), task: toDo, priority: prrty, check: false }])
+      let newTask = { id: Date.now(), task: toDo, priority: prrty, check: false }
+      let updatedTasks = [...AllToDo, newTask]
+      setAllToDo(updatedTasks)
+      localStorage.setItem("Tasks", JSON.stringify(updatedTasks))
+
       inputBar.focus()
       setToDo("")
     }
   }
 
-  function handleStateChange(newValue) {
-    setAllToDo(newValue)
-  }
-
-  // XML Starts Here //
+  // Rendering
   return (
     <div className="app">
 
@@ -58,16 +58,16 @@ function App() {
       <div className="todos">
 
         <div className="concentrate">
-          <SortTasks title={"Concentrate"} AllToDo={AllToDo} toDos={AllToDo.filter((item) => item.priority === '1')} parentState={handleStateChange} />
+          <SortTasks title={"Concentrate"} AllToDo={AllToDo} toDos={AllToDo.filter((item) => item.priority === '1')} setAllToDo={setAllToDo} />
         </div>
         <div className="delegate">
-          <SortTasks title={"Delegate"} AllToDo={AllToDo} toDos={AllToDo.filter((item) => item.priority === '2')} parentState={handleStateChange} />
+          <SortTasks title={"Delegate"} AllToDo={AllToDo} toDos={AllToDo.filter((item) => item.priority === '2')} setAllToDo={setAllToDo} />
         </div>
         <div className="schedule">
-          <SortTasks title={"Schedule"} AllToDo={AllToDo} toDos={AllToDo.filter((item) => item.priority === '3')} parentState={handleStateChange} />
+          <SortTasks title={"Schedule"} AllToDo={AllToDo} toDos={AllToDo.filter((item) => item.priority === '3')} setAllToDo={setAllToDo} />
         </div>
         <div className="ignorable">
-          <SortTasks title={"Ignorable"} AllToDo={AllToDo} toDos={AllToDo.filter((item) => item.priority === '4')} parentState={handleStateChange} />
+          <SortTasks title={"Ignorable"} AllToDo={AllToDo} toDos={AllToDo.filter((item) => item.priority === '4')} setAllToDo={setAllToDo} />
         </div>
 
       </div>

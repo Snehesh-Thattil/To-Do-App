@@ -29,10 +29,7 @@ function QuotesGenerate() {
 
     return (
         <div>
-            <h4>{quote}
-                <br />
-                <span> - {author[0]}</span>
-            </h4>
+            <h4>{quote} <br /> <span> - {author[0]}</span> </h4>
         </div>
     )
 }
