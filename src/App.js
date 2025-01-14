@@ -56,20 +56,10 @@ function App() {
       </div>
 
       <div className="todos">
-
-        <div className="concentrate">
-          <SortTasks title={"Concentrate"} AllToDo={AllToDo} toDos={AllToDo.filter((item) => item.priority === '1')} setAllToDo={setAllToDo} />
-        </div>
-        <div className="delegate">
-          <SortTasks title={"Delegate"} AllToDo={AllToDo} toDos={AllToDo.filter((item) => item.priority === '2')} setAllToDo={setAllToDo} />
-        </div>
-        <div className="schedule">
-          <SortTasks title={"Schedule"} AllToDo={AllToDo} toDos={AllToDo.filter((item) => item.priority === '3')} setAllToDo={setAllToDo} />
-        </div>
-        <div className="ignorable">
-          <SortTasks title={"Ignorable"} AllToDo={AllToDo} toDos={AllToDo.filter((item) => item.priority === '4')} setAllToDo={setAllToDo} />
-        </div>
-
+        <SortTasks title={"Concentrate"} AllToDo={AllToDo} toDos={AllToDo.filter((item) => item.priority === '1')} setAllToDo={setAllToDo} />
+        <SortTasks title={"Delegate"} AllToDo={AllToDo} toDos={AllToDo.filter((item) => item.priority === '2')} setAllToDo={setAllToDo} />
+        <SortTasks title={"Schedule"} AllToDo={AllToDo} toDos={AllToDo.filter((item) => item.priority === '3')} setAllToDo={setAllToDo} />
+        <SortTasks title={"Ignorable"} AllToDo={AllToDo} toDos={AllToDo.filter((item) => item.priority === '4')} setAllToDo={setAllToDo} />
       </div>
 
       <div className="quote">

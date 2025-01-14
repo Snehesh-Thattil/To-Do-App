@@ -34,26 +34,29 @@ function SortTasks({ title, toDos, AllToDo, setAllToDo }) {
 
     // Rendering
     return (
-        <div className="task__wrapper">
+        <div className={title}>
+            <div className="task__wrapper">
 
-            <p className="typeHeading">{title}</p>
-            {toDos.map((obj, index) => {
-                return (
-                    <div key={index} className={`todo ${obj.fadeOut ? 'fade' : ''}`} >
+                <p className="typeHeading">{title}</p>
 
-                        <input checked={obj.check}
-                            onChange={(e) => handleCheckboxChange(obj, e.target.checked)}
-                            type="checkbox" />
+                {toDos.map((obj, index) => {
+                    return (
+                        <div key={index} className={`todo ${obj.fadeOut ? 'fade' : ''}`} >
 
-                        {obj.check ? <p><s>{obj.task}</s></p> : <p>{obj.task}</p>}
+                            <input checked={obj.check}
+                                onChange={(e) => handleCheckboxChange(obj, e.target.checked)}
+                                type="checkbox" />
 
-                        <div className="icon">
-                            <i className="fas fa-times" onClick={(e) => removeTask(e, obj)}></i>
+                            {obj.check ? <p><s>{obj.task}</s></p> : <p>{obj.task}</p>}
+
+                            <div className="icon">
+                                <i className="fas fa-times" onClick={(e) => removeTask(e, obj)}></i>
+                            </div>
+
                         </div>
-
-                    </div>
-                )
-            })}
+                    )
+                })}
+            </div>
         </div>
     )
 }
