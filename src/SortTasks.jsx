@@ -1,14 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 function SortTasks({ title, toDos, AllToDo, setAllToDo }) {
-
-    useEffect(() => {
-        const tasksFetch = JSON.parse(localStorage.getItem("Tasks"))
-        if (tasksFetch) {
-            setAllToDo(tasksFetch)
-        }
-    }, [setAllToDo])
-
     // Remove Task Action
     function removeTask(e, obj) {
         e.preventDefault()

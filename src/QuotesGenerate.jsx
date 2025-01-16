@@ -18,7 +18,9 @@ function QuotesGenerate() {
                         setQuote(data[ranNum].text)
                         setAuthor(data[ranNum].author.split(','))
                     })
-                    .catch(() => {
+                    .catch((err) => {
+                        console.log("|| Cant fetch quote form API : ", err.message)
+                        // Manual quote entry
                         setQuote("I'm the Best")
                         setAuthor(["Snehesh Thattil"])
                     })

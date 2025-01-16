@@ -1,35 +1,60 @@
-import React, { useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import './App.css';
 import SortTasks from './SortTasks';
 import QuotesGenerate from './QuotesGenerate';
 
 function App() {
   const [AllToDo, setAllToDo] = useState([])
-  const [toDo, setToDo] = useState('')
-  const [prrty, setPrrty] = useState('')
+  const inputRef = useRef(null)
+  const prrtyRef = useRef(null)
 
+  // For setting and updating correct weekday
   let day = new Date().getDay()
   let AllDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
   let Today = AllDays[day]
 
-  function submitTask(e) {
-    e.preventDefault()
-    let inputBar = document.querySelector('.inputBar')
-
-    if (prrty < '1') {
-      alert('Choose a Valid Task Priority')
+  // Fetching from localStorage on loading
+  useEffect(() => {
+    const tasksFetch = JSON.parse(localStorage.getItem("Tasks"))
+    if (tasksFetch) {
+      setAllToDo(tasksFetch)
     }
-    else if (toDo.length < 3) {
+  }, [setAllToDo])
+
+  // Submition on pressing Enter key
+  const HandleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      submitTask()
+    }
+  }
+
+  // Submiting the task in the input
+  function submitTask() {
+
+    let toDo = inputRef.current.value
+    let priority = prrtyRef.current.value
+
+    if (toDo.trim().length < 1) {
       alert('Enter a Valid Task Name')
     }
+    else if (priority < '1') {
+      alert('Choose a Valid Task Priority')
+    }
     else {
-      let newTask = { id: Date.now(), task: toDo, priority: prrty, check: false }
-      let updatedTasks = [...AllToDo, newTask]
+      let newToDo = {
+        id: Date.now(),
+        task: toDo,
+        priority: priority,
+        check: false
+      }
+
+      let updatedTasks = [...AllToDo, newToDo]
+
       setAllToDo(updatedTasks)
       localStorage.setItem("Tasks", JSON.stringify(updatedTasks))
 
-      inputBar.focus()
-      setToDo("")
+      inputRef.current.value = ''
+      inputRef.current.focus()
     }
   }
 
@@ -44,15 +69,24 @@ function App() {
 
       <div className="inputDiv">
         <i className='fas fa-pen'></i>
-        <input className='inputBar' value={toDo} onChange={(e) => setToDo(e.target.value)} type="text" placeholder="Add item..." />
-        <select name="Priority" onChange={(e) => setPrrty(e.target.value)}>
+
+        <input className='inputBar'
+          type="text"
+          placeholder="Add item..."
+          ref={inputRef}
+          onKeyDown={HandleKeyDown} />
+
+        <select name="Priority" ref={prrtyRef} onKeyDown={HandleKeyDown}>
           <option value="0" defaultValue hidden>Priority</option>
           <option value="1">Concentrate</option>
           <option value="2">Delegate</option>
           <option value="3">Schedule</option>
           <option value="4">Ignorable</option>
         </select>
-        <i className="fas fa-plus" onClick={submitTask}></i>
+
+        <button className='submitBtn' onClick={submitTask} onKeyDown={HandleKeyDown}>
+          <i className="fas fa-plus"></i>
+        </button>
       </div>
 
       <div className="todos">
